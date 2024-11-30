@@ -33,12 +33,14 @@ const createUser = async (req, res) => { // createUser
      
      console.log("hi from createUser")
 		console.log("inside the method !")	
-         res.status(200).render('createUsers', {
-	        data: undefined,
+       
+	if(req.method == 'GET'){
+	   res.status(200).render('createUsers', { data: undefined,
 		    heading: "New User",
 		    error:  undefined,
 		    message: undefined
 	       })
+	}
 
     //  console.log("passing the get logic") 
     //      if(req.method == 'POST'){
