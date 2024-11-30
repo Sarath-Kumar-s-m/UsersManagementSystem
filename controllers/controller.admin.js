@@ -30,9 +30,7 @@ const adminDashBoard = async (req, res) => { // adminDashBoard
 
 
 const createUser = async (req, res) => { // createUser 
-     
-     console.log("hi from createUser")
-		console.log("inside the method !")	
+      
        
 	if(req.method == 'GET'){
 	   res.status(200).render('createUsers', { data: undefined,
