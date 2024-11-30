@@ -1,0 +1,28 @@
+{
+  "name": "usersmanagementsystem",
+  "version": "1.0.0",
+  "description": "users management system using express and node.js",
+  "main": "index.js",
+  "scripts": {
+    "node": "node index.js",
+    "nodemon": "nodemon index.js"
+  },
+  "type": "commonJS",
+  "keywords": [
+    "usermanagementsystem"
+  ],
+  "author": "sarathkumar.s.m",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.8.1",
+    "morgan": "^1.10.0",
+    "nocache": "^4.0.0"
+  }
+}

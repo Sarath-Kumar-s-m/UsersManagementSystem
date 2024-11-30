@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+       <!--Document configurations--> 
+        <meta charser="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Document configuration-->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script> 
+        <!--Bootstrap configuration-->
+    </head>
+    <body>
+       <div class="container-fluid d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center  vh-100 m-0 p-0">
+       
+        <%if(data){%>
+        <div class="container bg-light text-secondary col-lg-5 m-0 p-0 border rounded shadow"> 
+            <div class="p-4 m-0 rounded ">
+                <h1 class="p-4 m-0 "><strong>Welcome, Home <%= data.name%></strong></h1>
+                <div class="p-4 ">
+                   <h5 class="mb-1 p-0"><small><strong>Name:</strong></small> <%= data.name %></h5>
+                   <h5 class="mb-1 p-0"><small><strong>Email:</strong></small> <%= data.email %></h5> 
+                   <h5 class="mb-1 p-0"><small><strong>Password:</strong></small> <%= data.password %></h5>
+                   <h5 class="mb-1 p-0 "><small><strong>Role:</strong></small> <%= data.role %></h5> 
+                </div>
+                <div class=" d-flex justify-content-lg-end px-5 pt-3 pb-1 mx-4 ">
+                    <a href="/user/home/signout" class="btn btn-warning px-3 rounded" type="submit"><small><strong>SignOut</strong></small></a>
+                </div>
+                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                  <strong><%= message %></strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            </div>
+        </div>
+        <%}%>
+      
+        <%if(error){%>
+         <div class="container bg-light text-secondary col-lg-5 m-0 p-0 border rounded shadow">
+           <div class="p-4 m-0 rounded ">
+                <h1 class="p-4 m-0 "><strong>Welcome, Home</strong></h1>                
+                <div class="p-4 ">                                                                            
+                    <h5 class="mb-1 p-0"><small><strong>Name:</strong></small></h5>
+                    <h5 class="mb-1 p-0"><small><strong>Email:</strong></small></h5> 
+                    <h5 class="mb-1 p-0"><small><strong>Password:</strong></small></h5>
+                    <h5 class="mb-1 p-0 "><small><strong>Role:</strong></small></h5> 
+                </div>
+                <div class=" d-flex justify-content-lg-end px-5 pt-3 pb-1 mx-4 ">
+                     <a href="/user/home/signout" class="btn btn-warning px-3 rounded" type="submit"><small><strong>SignOut</strong></small></a>
+                </div>
+                <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                    <strong><%= error %></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            </div>
+        </div> 
+        <%}%>
+    
+    </div> 
+    </body>
+</html>
