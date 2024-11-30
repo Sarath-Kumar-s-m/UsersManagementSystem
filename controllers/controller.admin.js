@@ -71,7 +71,7 @@ const createUser = async (req, res) => { // createUser
 	          
           if(newUser){
 		    
- 	    return res.redirect(301,'/admin/dashboard'); 
+ 	     return res.redirect(301,'/admin/dashboard'); 
 		  
 		  }else{
                     

@@ -56,7 +56,6 @@ app.use('/', initialRoutes)
 app.use('/', adminRoutes);
 app.use('/', userRoutes);
 
-
 app.use('*', (req, res) =>{
     res.status(404).send(`<h1> Page Not Found !!</h1>`)
 })
