@@ -40,91 +40,93 @@ const createUser = async (req, res) => { // createUser
 	       })
 	}
 
-    //  console.log("passing the get logic") 
-    //      if(req.method == 'POST'){
+     
+         if(req.method == 'POST'){
         
-	// 		console.log('Post')
-    //         const name = req.body.name;
-	//     const email = req.body.email;
-	//     const password = req.body.password;
-	//     const role = req.body.state == 'on' ? 'admin' : 'user';
-	
-	//   if(role == 'user'){
-
-	//     try{
-
-    //             const UserExist = await userModel.findOne({email: email});
+            const character = req.body.name.split("")[0].toUpperCase();
+	    const string = req.body.name.slice(1);
+	    const email = req.body.email;
+	    const password = req.body.password;
+	    const role = req.body.state == 'on' ? 'admin' : 'user';
             
-    //             if(UserExist){
-    //               return res.status(200).render('createUsers', {
-	// 		     data: undefined,
-	// 		     heading: "New User",
-	// 		     error: "User Alredy Exist !" , 
-	// 		     message: undefined 
-	// 	  })
+            const name =character  + string;
+            
+	  if(role == 'user'){
 
-	// 	}else{
+	    try{
+
+               const UserExist = await userModel.findOne({email: email});
+            
+               if(UserExist){
+                  return res.status(200).render('createUsers', {
+			     data: undefined,
+			     heading: "New User",
+	 		     error: "User Alredy Exist !" , 
+			     message: undefined 
+	 	  })
+
+		}else{
                
-	//           const newUser = await userModel.create({email: email});
+          const newUser = await userModel.create({email: email});
 	          
-	//           if(newUser){
+          if(newUser){
 		    
-	// 	    return res.redirect(301,'/admin/dashboard'); 
+ 	    return res.redirect(301,'/admin/dashboard'); 
 		  
-	// 	  }else{
+		  }else{
                     
-	//             return res.status(500).render('createUsers', {
-	// 	               data: undefined,
-	// 		       heading: "New User",
-	// 		       error: "User Creation Failed !",
-	// 		       message: undefined
-	// 	    }) 
-	// 	  }
-	// 	}
+	             return res.status(500).render('createUsers', {
+ 	               data: undefined,
+			       heading: "New User",
+	 		       error: "User Creation Failed !",
+			       message: undefined
+	 	    }) 
+	 	  }
+		}
 
-	//     }catch(error){
-    //               return res.status(500).send(`<h1>Internal Server Error !</h1>`)
-	//      }
+	     }catch(error){
+                  return res.status(500).send(`<h1>Internal Server Error !</h1>`)
+      }
 	
-    //      }else{
+         }else{
           
-	//       try{
+	       try{
 
-    //             const findAdmin = await adminModel.findOne({email: email})
-    //             if(findAdmin){
-    //               return res.status(200).render('createUsers',{
-    //                          data: undefined,
-	// 		     heading: "New User",
-	// 		     error: "Admin User Exits !",
-	// 		     message: undefined
+                const findAdmin = await adminModel.findOne({email: email})
+                 if(findAdmin){
+                  return res.status(200).render('createUsers',{
+                             data: undefined,
+			     heading: "New User",
+			     error: "Admin User Exits !",
+			     message: undefined
 
-	// 	  })
+	 	  })
 
-	// 	}else{
+		}else{
 
-    //               const newAdmin = await adminModel.create({name: name, email: email, password: password});
+                  const newAdmin = await adminModel.create({name: name, email: email, password: password});
                   
-	// 	  if(newAdmin){
-    //                 return res.redirect(301,"/admin/dashboard");
-	// 	  }else{
-    //                 return res.status(500).render('createUsers',{
-    //                            data: undefined,
-	// 		       heading: "New User",
-	// 		       error: "Admin User Creation Failed !",
-	// 		       message: undefined
-	// 	    })
+		  if(newAdmin){
+                    return res.redirect(301,"/admin/dashboard");
+ 	  }else{
+                    return res.status(500).render('createUsers',{
+                               data: undefined,
+			       heading: "New User",
+	 		       error: "Admin User Creation Failed !",
+			       message: undefined
+		    })
 
-	// 	  }
-	// 	} 
+		  }
+		} 
 
-	//       }catch(error){
-    //                 return res.status(500).send(`<h1>Internal Server Error !</h1>`)
-	//       }
+       }catch(error){
+                    return res.status(500).send(`<h1>Internal Server Error !</h1>`)
+	      }
 
-	//  }
+	 }
 
 
-    //  }
+       }
 
 } // createUser
 
