@@ -19,7 +19,7 @@ const rootRoutes = require('./routes/routes.root.js')
 
 
 /**
- * App Object Initialization
+ * App object Initialization
  */
 
 let app = express();
