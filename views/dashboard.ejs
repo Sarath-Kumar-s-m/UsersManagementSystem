@@ -23,21 +23,23 @@
         <!--Custom Configuration-->
     </head>
     <body class="p-0 m-0">
-        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 px-0 m-0 vh-100">
-            <div class="row m-0 pt-3">
+      <div class=" col-12 col-sm-12 col-md-12 col-lg-12 px-0 m-0 vh-100">
+      <div class="row m-0 pt-3">
 
-               <div class="d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 p-4">
-                   <div class="d-flex col-11 col-sm-9 col-md-12 col-lg-8 px-2 px-lg-2 py-4 px-md-2 bg-secondary shadow px-sm-3 px-lg-4 justify-content-lg-center justify-content-md-center justify-content-sm-center rounded " id="search-wrapper">
-                        <form action="/admin/dashboard/api/v1/searchuser" method="POST"   class="was-validated col-12 col-sm-12 col-md-12 col-lg-12 border">
-                             <input type="text" class=" form-control m-0  pt-lg-2 pb-lg-2 px-lg-2 rounded" name="value"   id="input-1" placeholder="Search" required>
-                             <div>              
-			       <button type="submit" class="btn btn-primary mx-2 mx-sm-2 mx-md-2 mx-lg-2" style="font-weight:600">Search</button>
-                             </div> 
-			</form>  
-                    </div> 
-                </div>
+      <div class="d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 p-4" id="div-1">
+      <div class="d-flex col-11 col-sm-9 col-md-12 col-lg-8 px-2 px-lg-2 py-4 px-md-2 bg-secondary shadow px-sm-3 px-lg-4 justify-content-lg-center justify-content-md-center justify-content-sm-center rounded " id="wrapper div-1.1">
+           
+	   <form action="/admin/dashboard/api/v1/searchuser" method="POST"   class="was-validated col-12 col-sm-12 col-md-12 col-lg-12 "> 
+		 <input type="text" class=" form-control m-0  pt-lg-2 pb-lg-2 px-lg-2 rounded" name="value"   id="input-1" placeholder="Search" required>
+                 <div class="d-flex justify-content-left m-0 p-0">              
+                 <button type="submit" class="btn btn-primary mt-2 px-4" style="font-weight:600">Search</button>
+                 </div> 
+	    </form> 
+
+      </div><!--div-1.1-->
+      </div><!--div-1-->
                 
-                <div class="d-flex justify-content-start align-items-center justify-content-sm-start justify-content-md-start justify-content-lg-start col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 px-5 px-sm-5 px-md-5 py-lg-4 px-lg-5">
+      <div class="d-flex justify-content-start align-items-center justify-content-sm-start justify-content-md-start justify-content-lg-start col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 px-5 px-sm-5 px-md-5 py-lg-4 px-lg-5">
                     <div class="dropdown mx-sm-5 mx-md-5 mx-lg-5">
                 <button class="dropdown-toggle btn btn-secondary px-4 px-sm-4 px-md-4 px-lg-5 rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
                            <span>More</span>
@@ -52,7 +54,7 @@
              <div class="row m-0 p-0">
                  <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center col-12 col-sm-12 col-md-12 col-lg-12 pt-4 pt-sm-4 pt-md-4 pt-lg-4 pb-0 ">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-10 border-top">
-                        <div class="table-responsive border rounded overflow-y-auto mt-2" id="table-wrapper">
+                        <div class="table-responsive rounded overflow-y-auto mt-2" id="table-wrapper">
                             <table class="table table-hover text-center" border="1">
                             <thead>
                               <tr class="bg-warning">
