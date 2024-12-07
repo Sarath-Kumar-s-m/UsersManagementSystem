@@ -7,7 +7,7 @@
     "node": "node index.js",
     "nodemon": "nodemon index.js"
   },
-  "type": "commonJS",
+  "type": "commonjs",
   "keywords": [
     "usermanagementsystem"
   ],
@@ -17,12 +17,13 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
-    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "mongoose": "^8.8.1",
     "morgan": "^1.10.0",
-    "nocache": "^4.0.0"
+    "nocache": "^4.0.0",
+    "validator": "^13.12.0"
   }
 }

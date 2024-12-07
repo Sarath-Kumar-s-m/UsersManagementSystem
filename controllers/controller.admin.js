@@ -9,21 +9,17 @@ const userModel = require('../database/models/model.user.js');
 const adminDashBoard = async (req, res) => { // adminDashBoard
       
        try{
-     
           const findUser = await userModel.find({});
 	
-	  if(findUser.length == 0){
-             
-	      return res.status(200).render('dashboard',{data: findUser});
-  	  
-	  }else{
-            
-	     return res.status(200).render('dashboard',{data: findUser});
-	  } 
+	     if(findUser.length == 0){
+	        return res.status(200).render('dashboard',{data: findUser});
+	     }else{
+	       return res.status(200).render('dashboard',{data: findUser});
+	     } 
 	      
-       }catch(error){ 
-	    return res.status(500).send(`<h1>Internal Server Error !</h1>`); 
-       }
+        }catch(error){ 
+	        return res.status(500).json(error); 
+        }
 
 } //adminDashBoard
 
@@ -45,17 +41,15 @@ const createUser = async (req, res) => { // createUser
 
      
         if(req.method == 'POST'){
-        
+             
            const nameChar = req.body.name.split("")[0].toUpperCase();
 	       const nameChars = req.body.name.slice(1);
 	       const email = req.body.email;
 	       const password = req.body.password;
-	       const role = req.body.state == 'on' ? 'admin' : 'user';
-            
+	       const role = req.body.state == 'on' ? 'admin' : 'user'; 
            const name = nameChar + nameChars;
-            
-	        if(role == 'user'){
-
+	        
+		   if(role == 'user'){
 	          try{
 
                 const userExist = await userModel.findOne({email: email});
@@ -74,7 +68,7 @@ const createUser = async (req, res) => { // createUser
                    const newUser = await userModel.create({name: name, email: email, password: password});
                    
 				   if(newUser){
- 	                  return res.redirect(301, '/user/home'); 
+ 	                  return res.redirect(301, '/admin/dashboard'); 
 		            }
 
                    if(!newUser){ 
@@ -90,15 +84,16 @@ const createUser = async (req, res) => { // createUser
 		        }
 
 	         }catch(error){
-                   return res.status(500).send(`<h1>Internal Server Error !</h1>`)
+                   return res.status(500).json(error)
              }
 	
-            }else{
-          
+            }
+			
+			if(role == 'admin'){
 	            try{
 
                    const findAdmin = await adminModel.findOne({email: email})
-                
+                  
 				   if(findAdmin){
                      return res.status(200).render('createUsers',{
                                 data: undefined,
@@ -111,8 +106,7 @@ const createUser = async (req, res) => { // createUser
 				
 				    if(!findAdmin){
 
-                      const newAdmin = await adminModel.create({name: name, email: email, password: password});
-                  
+                      const newAdmin = await adminModel.create({name: name, email: email, password: password, role: role});
 		              if(newAdmin){
                         return res.redirect(301,"/admin/dashboard");
  	                  }
@@ -129,7 +123,7 @@ const createUser = async (req, res) => { // createUser
 		            } 
 
                 }catch(error){
-                    return res.status(500).send(`<h1>Internal Server Error !</h1>`)
+                    return res.status(500).json(error)
 	            }
 	        }
 
@@ -143,25 +137,22 @@ const createUser = async (req, res) => { // createUser
 const searchUser = async (req, res) => { //searchUser
      
       try{
-        
-	const name = req.body.value;
-	
-	const findUser = await userModel.find({name: name, $options: 'i' })
-      
+	     const name = req.body.value;
+	     const findUser = await userModel.find({name: {$regex: name, $options: 'i'} })
+         
         if(findUser == 0){
           return res.status(404).render('dashboard', {data: findUser}); 
-	}
+	    }
 	 
-	if(findUser !== 0){
+	    if(findUser !== 0){
           return res.status(200).render('dashboard', {data: findUser});
-	}
+	    }
 
       }catch(error){
-            return res.status(500).send(`<h1>Server Error !</h1>`); 
+            return res.status(500).json(error); 
       }
 	
 } // searchUser
-
 
 
 
@@ -170,18 +161,13 @@ const logOut = async (req, res) => { // signOut
       req.session.destroy(function(error){
 
           if(error){
-            throw error;
-	   }else{
-              return res.redirect(301, '/login') 
-	   }
-
+             return res.status(500).json(error) 
+	      }else{
+            return res.redirect(301, '/login') 
+	      }
       })
 
 } //signOut
-
-
-
-
 
 
 module.exports = {
