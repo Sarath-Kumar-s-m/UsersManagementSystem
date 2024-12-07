@@ -146,7 +146,7 @@ const searchUser = async (req, res) => { //searchUser
         
 	const name = req.body.value;
 	
-	const findUser = await userModel.find({name: /name/, $options: 'i' })
+	const findUser = await userModel.find({name: name, $options: 'i' })
       
         if(findUser == 0){
           return res.status(404).render('dashboard', {data: findUser}); 
