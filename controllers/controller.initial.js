@@ -19,14 +19,9 @@ const login = async (req, res) => {
         
          if(req.session.role == 'user'){
              return res.redirect(301, '/user/home');           
- 
-         }
-         
-         if(req.session.role == 'admin'){
+         }else if(req.session.role == 'admin'){
             return res.redirect(301,'/admin/dashboard');
-         }
-         
-          if(!req.session.role){
+         }else{
             return res.status(200).render('loginForm',{data: {
                        error: undefined
             }})
