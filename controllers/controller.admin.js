@@ -132,6 +132,24 @@ const createUser = async (req, res) => { // createUser
 
 } // createUser
 
+const updateUser = async (req, res) => {
+
+}
+
+
+const deleteUser = async (req, res) => {
+	  try{
+         const id = req.query.id;
+		 const deletedUser = await userModel.findByIdAndDelete(id);
+		 
+		 if(deletedUser){
+			return res.redirect(301, '/admin/dashboard');
+		 }
+
+	  }catch(error){
+		   return res.status(500).json(error);
+	  }
+}
 
 
 const searchUser = async (req, res) => { //searchUser
@@ -174,5 +192,7 @@ module.exports = {
     adminDashBoard,
     logOut,
     searchUser,
-    createUser
+    createUser,
+	updateUser,
+	deleteUser
 }

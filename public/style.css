@@ -1,11 +1,11 @@
 body{
-    background-color: #3d444d;
+    /* background-color: #3d444d; */
     font-family: lato;
 }
 
-#search-wrapper{
+/* #search-wrapper{
     background-color:#2f3742;
-}
+} */
 
 #table-wrapper{
    height: 525px;
