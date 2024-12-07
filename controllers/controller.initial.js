@@ -26,7 +26,7 @@ const login = async (req, res) => {
             return res.redirect(301,'/admin/dashboard');
          }
          
-          if(req.method == 'POST'){
+          if(!req.session.role){
             return res.status(200).render('loginForm',{data: {
                        error: undefined
             }})

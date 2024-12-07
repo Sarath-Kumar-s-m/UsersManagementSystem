@@ -170,9 +170,10 @@ const updateUser = async (req, res) => {
 		 const name = req.body.name;
 		 const email = req.body.email;
 		 const password = req.body.password;
-		
+		 const role = req.body.state == 'on' ? 'admin': 'user';
+
          try{
-		    const updatedUser = await userModel.findByIdAndUpdate(id, {name: name, email: email, password: password});
+		    const updatedUser = await userModel.findByIdAndUpdate(id, {name: name, email: email, password: password, role: role});
 			if(updatedUser){
               return res.redirect(301, '/admin/dashboard')
 			}
