@@ -13,9 +13,6 @@
   ],
   "author": "sarathkumar.s.m",
   "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^3.1.7"
-  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "ejs": "^3.1.10",
@@ -25,5 +22,8 @@
     "morgan": "^1.10.0",
     "nocache": "^4.0.0",
     "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }

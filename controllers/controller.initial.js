@@ -15,19 +15,20 @@ const userModel = require('../database/models/model.user.js')
 
 const login = async (req, res) => {
 
-      if(req.method == 'GET' && req.url == '/login'){ //* if statement-1
+      if(req.method == 'GET' ){ //* if statement-1
         
          if(req.session.role == 'user'){
              return res.redirect(301, '/user/home');           
  
-         }else if(req.session.role == 'admin'){
-            
+         }
+         
+         if(req.session.role == 'admin'){
             return res.redirect(301,'/admin/dashboard');
-        
-         }else{
-            
+         }
+         
+          if(req.method == 'POST'){
             return res.status(200).render('loginForm',{data: {
-                error: undefined
+                       error: undefined
             }})
          }
           

@@ -6,7 +6,7 @@ const adminModel = require('../database/models/model.admin.js');
 const userModel = require('../database/models/model.user.js');
 
 
-const adminDashBoard = async (req, res) => { // adminDashBoard
+const adminDashBoard = async (req, res) => { //* adminDashBoard
       
        try{
           const findUser = await userModel.find({});
@@ -21,11 +21,11 @@ const adminDashBoard = async (req, res) => { // adminDashBoard
 	        return res.status(500).json(error); 
         }
 
-} //adminDashBoard
+} //* adminDashBoard
 
 
 
-const createUser = async (req, res) => { // createUser 
+const createUser = async (req, res) => { //^ createUser 
       
        
 	   if(req.method == 'GET'){
@@ -130,13 +130,14 @@ const createUser = async (req, res) => { // createUser
 
         }
 
-} // createUser
+} //^ createUser
 
 const updateUser = async (req, res) => {
       
+	  const id = req.query.id;
+	 
 	  if(req.method == 'GET'){
         try{
-         const id = req.query.id;
 
 		 const findUser = await userModel.findById(id);
 
@@ -162,10 +163,39 @@ const updateUser = async (req, res) => {
 			return res.status(500).json(error);
 		}
 	  }
+
+
+	  if(req.method == 'POST'){
+        
+		 const name = req.body.name;
+		 const email = req.body.email;
+		 const password = req.body.password;
+		
+         try{
+		    const updatedUser = await userModel.findByIdAndUpdate(id, {name: name, email: email, password: password});
+			if(updatedUser){
+              return res.redirect(301, '/admin/dashboard')
+			}
+	        
+			if(!updatedUser){
+				return res.status(200).render('createUsers',{
+                           data: undefined,
+						   heading: "Update User",
+						   error: "Can not update the data !",
+						   message: undefined
+             		  })
+			}
+
+		}catch(error){
+			return res.status(200).json(error)
+		 }
+
+	  }
+
 }
 
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => { //! deleteUser
 	  try{
          const id = req.query.id;
 		 const deletedUser = await userModel.findByIdAndDelete(id);
@@ -177,10 +207,10 @@ const deleteUser = async (req, res) => {
 	  }catch(error){
 		   return res.status(500).json(error);
 	  }
-}
+} //! deleteUser
 
 
-const searchUser = async (req, res) => { //searchUser
+const searchUser = async (req, res) => { //~ SearchUser
      
       try{
 	     const name = req.body.value;
@@ -198,11 +228,11 @@ const searchUser = async (req, res) => { //searchUser
             return res.status(500).json(error); 
       }
 	
-} // searchUser
+} //~ searchUser
 
 
 
-const logOut = async (req, res) => { // signOut
+const logOut = async (req, res) => { //& logOut
    
       req.session.destroy(function(error){
 
@@ -213,9 +243,12 @@ const logOut = async (req, res) => { // signOut
 	      }
       })
 
-} //signOut
+} //& logOut
 
 
+/**
+ * Exporting custom modules as a part of node.js module
+ */
 module.exports = {
     adminDashBoard,
     logOut,
