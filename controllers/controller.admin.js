@@ -133,7 +133,35 @@ const createUser = async (req, res) => { // createUser
 } // createUser
 
 const updateUser = async (req, res) => {
+      
+	  if(req.method == 'GET'){
+        try{
+         const id = req.query.id;
 
+		 const findUser = await userModel.findById(id);
+
+		 if(findUser){
+			return res.status(200).render("createUsers", {
+				       data: findUser,
+                       heading: "Update User",
+	 		           error: undefined,
+			           message: undefined
+			        })
+		 }
+
+         if(!findUser){
+			return res.status(200).render("createUsers", {
+				       data: undefined,
+                       heading: "Update User",
+	 		           error: "Can't Fetch the user data !",
+			           message: undefined
+			        })
+		 }
+
+		}catch(error){
+			return res.status(500).json(error);
+		}
+	  }
 }
 
 
