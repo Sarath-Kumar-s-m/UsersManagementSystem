@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dashbord</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Google-font-links-start-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <!--Google-font-links-end-->
+        <!--Bootstrap-links-start-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!--Bootstrap-links-end-->
+        <!--Axios Link  start -->
+        <script defer src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+        <!--Axios link end-->
+        <!--Custom Configuration-->
+        <link rel="stylesheet" href="/style.css">
+        <script defer src="/script.js"></script>
+        <!--Custom Configuration-->
+    </head>
+    <body class="p-0 m-0">
+      <div class=" col-12 col-sm-12 col-md-12 col-lg-12 px-0 m-0 vh-100">
+      <div class="row m-0 pt-3">
+      <div class="d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 p-4">
+      <div class="d-flex col-sm-9 col-md-12 col-lg-8 px-2 px-lg-2 py-4 px-md-2 px-sm-3 px-lg-4 justify-content-lg-center justify-content-md-center justify-content-sm-center rounded border bg-light">
+	   <form action="/admin/dashboard/api/v1/searchuser" method="POST"   class="col-12 col-sm-12 col-md-12 col-lg-12 "> 
+		         <input type="text" class=" form-control m-0  pt-lg-2 pb-lg-2 px-lg-2 border rounded" name="value"   id="input-1" placeholder="Search" required>
+                 <div class="d-flex justify-content-left m-1 p-0">              
+                 <button type="submit" class="btn btn-primary mt-2 px-4" style="font-weight:600">Search</button>
+                 </div> 
+	    </form> 
+      </div><!--div-1.1-->
+      </div><!--div-1-->
+      <div class="d-flex justify-content-start align-items-center justify-content-sm-start justify-content-md-start justify-content-lg-start col-12 col-sm-12 col-md-6 col-lg-6 text-center m-0 px-5 px-sm-5 px-md-5 py-lg-4 px-lg-5">
+                    <div class="dropdown mx-sm-5 mx-md-5 mx-lg-5">
+                <button class="dropdown-toggle btn border-primary px-4 px-sm-4 px-md-4 px-lg-5 rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+                           <span>More</span>
+                       </button>
+                       <ul class="dropdown-menu">
+                          <li><a href="/admin/dashboard/api/v1/createuser" class="dropdown-item" >Create User</a></li>
+                          <li><a href="/admin/dashboard/logout" class="dropdown-item" >Logout</a></li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>        
+             <div class="row m-0 p-0">
+                 <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center col-12 col-sm-12 col-md-12 col-lg-12 pt-4 pt-sm-4 pt-md-4 pt-lg-4 pb-0 ">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-10 border-top">
+                        <div class="table-responsive rounded overflow-y-auto mt-2" id="table-wrapper">
+                            <table class="table table-hover text-center" border="1">
+                            <thead>
+                              <tr class="bg-warning">
+                                 <th class="table-primary" scope="col">No</th>
+                                 <th class="table-primary" scope="col">Name</th>
+                                 <th class="table-primary" scope="col">Email</th>
+                                 <th class="table-primary" scope="col">Password</th>
+                                 <th class="table-primary" scope="col">Actions</th>
+                              </tr>
+                            </thead>
+			                <tbody>
+				            <%if(data){%>
+                                <%data.forEach((data,index) => {%> 
+                                      <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><%= data.name %></td>
+                                        <td><%= data.email %></td>
+                                        <td><%= data.password %></td>
+                                        <td class="m-0">
+                                            <div class="dropdown-center rounded">
+                                                 <div class="rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                         <span class="font-weight-bold" style="font-weight: 600">. . .</span>
+                                                 </div>
+                                                <ul class="dropdown-menu border">
+                                                    <li><a class="dropdown-item" href="/admin/dashboard/api/v1/deleteuser?id=<%= data._id %>">Delete</a></li>
+                                                    <li><a class="dropdown-item" href="/admin/dashboard/api/v1/updateuser?id=<%= data._id %>">Update</a></li>
+                                                </ul>
+                                            </div>
+                                            </td>
+                                        </tr> 
+                                <%})%>
+                             <%}%>
+			             </tbody>
+                        </table> 
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div> 
+    </body>
+</html>

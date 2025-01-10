@@ -1,0 +1,12 @@
+body{
+    font-family: lato;
+}
+
+#table-wrapper{
+   height: 499px;
+   scrollbar-width:none;
+}
+
+a, span{
+    font-weight: 600;
+}
