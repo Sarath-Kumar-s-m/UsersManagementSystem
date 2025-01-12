@@ -16,5 +16,4 @@ userRoutes.get('/user/home',userAuthentication.userHomeAuthentication, userContr
 userRoutes.get('/user/home/signout',userAuthentication.userHomeAuthentication, userControllers.signOut);
 
 
-
 module.exports = userRoutes;
