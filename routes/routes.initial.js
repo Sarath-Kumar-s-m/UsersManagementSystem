@@ -5,7 +5,6 @@ const userAuthentication = require('../middlewares/authentications/auth.user.js'
 const initialRoutes = express.Router();
 
 
-
 initialRoutes.get('/login', adminAuthentication.adminAuthentication, userAuthentication.userAuthentication, initialControllers.login);
 initialRoutes.post('/login', initialControllers.login);
 initialRoutes.get('/signup', initialControllers.signup)
