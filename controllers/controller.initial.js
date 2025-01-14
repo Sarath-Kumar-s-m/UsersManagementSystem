@@ -35,9 +35,9 @@ const login = async (req, res) => {
       try {
          const findUser = await userModel.findOne({ email: email});
 
-         if (findUser.length > 0 && findUser[0].role == "user") {
-            req.session.userData = findUser[0];
-            req.session.role = findUser[0].role;
+         if (findUser && findUser.role == "user") {
+            req.session.userData = findUser;
+            req.session.role = findUser.role;
             return res.redirect(301, "/user/home");
          } else {
             const findAdmin = await adminModel.find({email: email});
