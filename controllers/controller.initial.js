@@ -29,8 +29,7 @@ const login = async (req, res) => {
    }
 
    if (req.method == "POST") {
-      const email = req.body.email;
-      const password = req.body.password;
+      const email = req.body.email;      
 
       try {
          const findUser = await userModel.findOne({ email: email});
