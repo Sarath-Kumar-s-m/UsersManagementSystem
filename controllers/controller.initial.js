@@ -40,10 +40,10 @@ const login = async (req, res) => {
             req.session.role = findUser.role;
             return res.redirect(301, "/user/home");
          } else {
-            const findAdmin = await adminModel.find({email: email});
+            const findAdmin = await adminModel.findOne({email: email});
 
-            if (findAdmin.length > 0 && findAdmin[0].role == "admin") {
-               req.session.role = findAdmin[0].role;
+            if (findAdmin && findAdmin.role == "admin") {
+               req.session.role = findAdmin.role;
                return res.redirect(301, "/admin/dashboard");
             } else {
                return res.redirect(301, "/signup");
