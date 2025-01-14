@@ -33,20 +33,14 @@ const login = async (req, res) => {
       const password = req.body.password;
 
       try {
-         const findUser = await userModel.find({
-            email: email,
-            password: password,
-         });
+         const findUser = await userModel.find({ email: email});
 
          if (findUser.length > 0 && findUser[0].role == "user") {
             req.session.userData = findUser[0];
             req.session.role = findUser[0].role;
             return res.redirect(301, "/user/home");
          } else {
-            const findAdmin = await adminModel.find({
-               email: email,
-               password: password,
-            });
+            const findAdmin = await adminModel.find({email: email});
 
             if (findAdmin.length > 0 && findAdmin[0].role == "admin") {
                req.session.role = findAdmin[0].role;
