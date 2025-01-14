@@ -33,7 +33,7 @@ const login = async (req, res) => {
       const password = req.body.password;
 
       try {
-         const findUser = await userModel.find({ email: email});
+         const findUser = await userModel.findOne({ email: email});
 
          if (findUser.length > 0 && findUser[0].role == "user") {
             req.session.userData = findUser[0];
