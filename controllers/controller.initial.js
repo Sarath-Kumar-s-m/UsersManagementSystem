@@ -1,7 +1,6 @@
 /**
  * Custom Module Dependences
  */
-
 const adminModel = require("../database/models/model.admin.js");
 const userModel = require("../database/models/model.user.js");
 
@@ -11,53 +10,51 @@ const userModel = require("../database/models/model.user.js");
  * @param {object} request
  * @param {object} response
  */
-
 const login = async (req, res) => {
 
-   if (req.method == "GET") {
-      if (req.session.role == "user") {
-         return res.redirect(301, "/user/home");
-      } else if (req.session.role == "admin") {
-         return res.redirect(301, "/admin/dashboard");
-      } else {
-         return res.status(200).render("loginForm", {
-            data: {
-               error: undefined,
-            },
-         });
+     if(req.method == "GET") {
+      
+        if(req.session.role == "user"){
+           return res.redirect(301, "/user/home");
+        }
+         
+        if (req.session.role == "admin"){
+           return res.redirect(301, "/admin/dashboard");      
+        }
+           
+        return res.status(200).render("loginForm", { data: { error: undefined} });   
+
       }
-   }
 
-   if (req.method == "POST") {
-      const email = req.body.email;      
+      if(req.method == "POST"){
 
-      try {
-         const findUser = await userModel.findOne({ email: email});
+         const email = req.body.email;      
 
-         if (findUser && findUser.role == "user") {
-            req.session.userData = findUser;
-            req.session.role = findUser.role;
-            return res.redirect(301, "/user/home");
-         } else {
+         try{
+
+            const findUser = await userModel.findOne({ email: email});
+
+            if(findUser && findUser.role == "user") {
+               req.session.userData = findUser;
+               req.session.role = findUser.role;
+               return res.redirect(301, "/user/home");
+            } 
+
             const findAdmin = await adminModel.findOne({email: email});
 
-            if (findAdmin && findAdmin.role == "admin") {
+            if(findAdmin && findAdmin.role == "admin") {
                req.session.role = findAdmin.role;
                return res.redirect(301, "/admin/dashboard");
-            } else {
-               return res.redirect(301, "/signup");
             }
+              
+            return res.redirect(301, "/signup");
+         
+         }catch(error) {  
+            console.log(error);
+            return res.status(200).send(`<h1>Error ! This error is comming from controller.initial.js</h1>
+                                       <h3>Error: ${error}</h3>` );
          }
-      } catch (error) {
-         console.log(error);
-         return res
-            .status(200)
-            .send(
-               `<h1>Error ! This error is comming from controller.initial.js</h1>`
-            );
       }
-   }
-
 }
 
 /**
