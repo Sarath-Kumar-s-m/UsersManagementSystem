@@ -13,42 +13,32 @@ const userModel = require("../database/models/model.user.js");
 const login = async (req, res) => {
 
      if(req.method == "GET") {
-      
         if(req.session.role == "user"){
            return res.redirect(301, "/user/home");
         }
-         
         if (req.session.role == "admin"){
            return res.redirect(301, "/admin/dashboard");      
-        }
-           
+        }  
         return res.status(200).render("loginForm", { data: { error: undefined} });   
-
       }
 
       if(req.method == "POST"){
-
          const email = req.body.email;      
-
          try{
-
             const findUser = await userModel.findOne({ email: email});
-
+            
             if(findUser && findUser.role == "user") {
                req.session.userData = findUser;
                req.session.role = findUser.role;
                return res.redirect(301, "/user/home");
             } 
-
             const findAdmin = await adminModel.findOne({email: email});
-
+            
             if(findAdmin && findAdmin.role == "admin") {
                req.session.role = findAdmin.role;
                return res.redirect(301, "/admin/dashboard");
-            }
-              
+            }              
             return res.redirect(301, "/signup");
-         
          }catch(error) {  
             console.log(error);
             return res.status(200).send(`<h1>Error ! This error is comming from controller.initial.js</h1>
