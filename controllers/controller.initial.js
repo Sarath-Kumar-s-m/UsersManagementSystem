@@ -10,6 +10,7 @@ const userModel = require("../database/models/model.user.js");
  * @param {object} request
  * @param {object} response
  */
+
 const login = async (req, res) => {
 
      if(req.method == "GET") {
@@ -47,6 +48,8 @@ const login = async (req, res) => {
       }
 }
 
+
+
 /**
  *@async
  *@function signup
@@ -54,6 +57,7 @@ const login = async (req, res) => {
  * @param {*} response
  * @returns
  */
+
 const signup = async (req, res) => {
 
    if (req.method == "GET") {

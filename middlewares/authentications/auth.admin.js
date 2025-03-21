@@ -1,6 +1,3 @@
-
-
-
 const adminAuthentication = async function(req, res, next){
      if(req.session.role == 'admin'){
        return res.redirect(301, "/admin/dashboard") 
@@ -8,7 +5,6 @@ const adminAuthentication = async function(req, res, next){
        next()
      }
 }
-
 
 const adminDashBoardAuthentication = async function(req, res, next){
       if(req.session.role == 'admin'){
