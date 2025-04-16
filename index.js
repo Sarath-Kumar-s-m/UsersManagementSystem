@@ -21,7 +21,6 @@ const rootRoutes = require("./routes/routes.root.js");
  */
 
 let app = express();
-
 let PORT = process.argv[2] || 3000;
 let hostName = "localhost";
 let backLog = null;
@@ -33,11 +32,9 @@ app.use(
 );
 
 app.set("view engine", "ejs");
-
 app.use(noCache());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
     session({
         secret: "secret",
